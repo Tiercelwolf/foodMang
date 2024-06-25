@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruone.wxapp.shop.dao.StoreGoodsDao">
+    <resultMap id="StoreGoodsResultMap" type="cn.ruone.wxapp.shop.api.entity.StoreGoods">
+        <result property="id" column="id" javaType="String" jdbcType="INTEGER"/>
+        <result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="goodstype" column="goodstype" javaType="String" jdbcType="INTEGER"/>
+        <result property="miniimage" column="miniimage" javaType="String" jdbcType="VARCHAR"/>
+        <result property="specialprice" column="specialprice" javaType="float" jdbcType="DECIMAL"/>
+        <result property="originprice" column="originprice" javaType="float" jdbcType="DECIMAL"/>
+        <result property="memberprice" column="memberprice" javaType="float" jdbcType="DECIMAL"/>
+        <result property="siteprice" column="siteprice" javaType="float" jdbcType="DECIMAL"/>
+        <result property="onsale" column="onsale" javaType="int" jdbcType="INTEGER"/>
+        <result property="descrip" column="descrip" javaType="String" jdbcType="VARCHAR"/>
+        <result property="soldnum" column="soldnum" javaType="String" jdbcType="INTEGER"/>
+        <result property="hot" column="hot" javaType="int" jdbcType="TINYINT"/>
+        <result property="recommend" column="recommend" javaType="int" jdbcType="TINYINT"/>
+        <result property="bizid" column="bizid" javaType="String" jdbcType="INTEGER"/>
+        <result property="newer" column="newer" javaType="int" jdbcType="TINYINT"/>
+        <result property="maxnum" column="maxnum" javaType="String" jdbcType="INTEGER"/>
+        <result property="minnum" column="minnum" javaType="String" jdbcType="INTEGER"/>
+        <result property="packfee" column="packfee" javaType="float" jdbcType="DECIMAL"/>
+        <result property="userpoint" column="userpoint" javaType="String" jdbcType="INTEGER"/>
+        <result property="stocknum" column="stocknum" javaType="String" jdbcType="INTEGER"/>
+        <result property="flavorflag" column="flavorflag" javaType="int" jdbcType="TINYINT"/>
+        <result property="userpointflag" column="userpointflag" javaType="String" jdbcType="VARCHAR"/>
+        <result property="rewardpoint" column="rewardpoint" javaType="String" jdbcType="INTEGER"/>
+        <result property="flag" column="flag" javaType="String" jdbcType="CHAR"/>
+        <result property="sequ" column="sequ" javaType="String" jdbcType="INTEGER"/>
+        <result property="selltype" column="selltype" javaType="String" jdbcType="INTEGER"/>
+        <result property="createdtime" column="createdtime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="onoffsaletime" column="onoffsaletime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'StoreGoodsResultMap'"/>
+        <bind name="tableName" value="'goods'"/>
+    </sql>
+
+    <insert id="insert" parameterType="cn.ruone.wxapp.shop.api.entity.StoreGoods">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="deleteByPk" parameterType="String">
+        delete from goods where id =#{id}
+    </delete>
+
+    <delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="StoreGoodsResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>

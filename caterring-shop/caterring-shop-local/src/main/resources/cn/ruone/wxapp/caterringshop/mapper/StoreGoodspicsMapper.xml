@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruone.wxapp.shop.dao.StoreGoodspicsDao">
+    <resultMap id="StoreGoodspicsResultMap" type="cn.ruone.wxapp.shop.api.entity.StoreGoodspics">
+        <result property="id" column="id" javaType="String" jdbcType="INTEGER"/>
+        <result property="goodspic1" column="goodspic1" javaType="String" jdbcType="VARCHAR"/>
+        <result property="goodsid" column="goodsid" javaType="String" jdbcType="INTEGER"/>
+        <result property="sequ" column="sequ" javaType="String" jdbcType="INTEGER"/>
+        <result property="goodspic2" column="goodspic2" javaType="String" jdbcType="VARCHAR"/>
+        <result property="text" column="text" javaType="String" jdbcType="VARCHAR"/>
+        <result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'StoreGoodspicsResultMap'"/>
+        <bind name="tableName" value="'goodspics'"/>
+    </sql>
+
+    <insert id="insert" parameterType="cn.ruone.wxapp.shop.api.entity.StoreGoodspics">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="deleteByPk" parameterType="String">
+        delete from goodspics where id =#{id}
+    </delete>
+
+    <delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="StoreGoodspicsResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>

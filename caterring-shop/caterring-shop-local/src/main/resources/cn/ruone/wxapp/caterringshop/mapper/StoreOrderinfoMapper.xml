@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruone.wxapp.shop.dao.StoreOrderinfoDao">
+    <resultMap id="StoreOrderinfoResultMap" type="cn.ruone.wxapp.shop.api.entity.StoreOrderinfo">
+        <result property="id" column="id" javaType="String" jdbcType="INTEGER"/>
+        <result property="userid" column="userid" javaType="String" jdbcType="INTEGER"/>
+        <result property="status" column="status" javaType="String" jdbcType="VARCHAR"/>
+        <result property="createdtime" column="createdtime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="paytime" column="paytime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="canceltime" column="canceltime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="finishtime" column="finishtime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="income" column="income" javaType="float" jdbcType="DECIMAL"/>
+        <result property="packfee" column="packfee" javaType="float" jdbcType="DECIMAL"/>
+        <result property="deliveryfee" column="deliveryfee" javaType="float" jdbcType="DECIMAL"/>
+        <result property="price" column="price" javaType="float" jdbcType="DECIMAL"/>
+        <result property="phone" column="phone" javaType="String" jdbcType="VARCHAR"/>
+        <result property="address" column="address" javaType="String" jdbcType="VARCHAR"/>
+        <result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="paytype" column="paytype" javaType="String" jdbcType="CHAR"/>
+        <result property="bizid" column="bizid" javaType="String" jdbcType="INTEGER"/>
+        <result property="notes" column="notes" javaType="String" jdbcType="VARCHAR"/>
+        <result property="arrivaltime" column="arrivaltime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="minexpense" column="minexpense" javaType="float" jdbcType="DECIMAL"/>
+        <result property="subscription" column="subscription" javaType="float" jdbcType="DECIMAL"/>
+        <result property="odtype" column="odtype" javaType="String" jdbcType="CHAR"/>
+        <result property="getpoint" column="getpoint" javaType="String" jdbcType="INTEGER"/>
+        <result property="orderno" column="orderno" javaType="String" jdbcType="VARCHAR"/>
+        <result property="paypoint" column="paypoint" javaType="String" jdbcType="INTEGER"/>
+        <result property="dishware" column="dishware" javaType="String" jdbcType="INTEGER"/>
+        <result property="dishfee" column="dishfee" javaType="float" jdbcType="DECIMAL"/>
+        <result property="admittime" column="admittime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result property="clientsts" column="clientsts" javaType="String" jdbcType="CHAR"/>
+        <result property="entersts" column="entersts" javaType="String" jdbcType="CHAR"/>
+        <result property="lastrsn" column="lastrsn" javaType="String" jdbcType="CHAR"/>
+        <result property="prepay" column="prepay" javaType="String" jdbcType="CHAR"/>
+        <result property="peoplenum" column="peoplenum" javaType="String" jdbcType="INTEGER"/>
+        <result property="tabtype" column="tabtype" javaType="String" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" javaType="String" jdbcType="CHAR"/>
+        <result property="cashpay" column="cashpay" javaType="float" jdbcType="DECIMAL"/>
+        <result property="walletpay" column="walletpay" javaType="float" jdbcType="DECIMAL"/>
+        <result property="wxpay" column="wxpay" javaType="float" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'StoreOrderinfoResultMap'"/>
+        <bind name="tableName" value="'orderinfo'"/>
+    </sql>
+
+    <insert id="insert" parameterType="cn.ruone.wxapp.shop.api.entity.StoreOrderinfo">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="deleteByPk" parameterType="String">
+        delete from orderinfo where id =#{id}
+    </delete>
+
+    <delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="StoreOrderinfoResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>

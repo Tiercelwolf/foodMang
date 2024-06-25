@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruone.wxapp.shop.dao.StoreRefundpsDao">
+<resultMap id="StoreRefundpsResultMap" type="cn.ruone.wxapp.shop.api.entity.StoreRefundps">
+    <result property="id" column="id" javaType="String" jdbcType="INTEGER"/>
+    <result property="orderid" column="orderid" javaType="String" jdbcType="INTEGER"/>
+    <result property="bizid" column="bizid" javaType="String" jdbcType="INTEGER"/>
+    <result property="oprid" column="oprid" javaType="String" jdbcType="VARCHAR"/>
+    <result property="money" column="money" javaType="float" jdbcType="DECIMAL"/>
+    <result property="confirmtime" column="confirmtime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+    <result property="reason" column="reason" javaType="String" jdbcType="VARCHAR"/>
+    <result property="status" column="status" javaType="String" jdbcType="CHAR"/>
+    <result property="tel" column="tel" javaType="String" jdbcType="VARCHAR"/>
+    <result property="notes" column="notes" javaType="String" jdbcType="VARCHAR"/>
+    <result property="applytime" column="applytime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+    <result property="completetime" column="completetime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+    <result property="refundmoney" column="refundmoney" javaType="float" jdbcType="DECIMAL"/>
+    <result property="opsnotes" column="opsnotes" javaType="String" jdbcType="VARCHAR"/>
+</resultMap>
+
+<!--用于动态生成sql所需的配置-->
+<sql id="config">
+    <bind name="resultMapId" value="'StoreRefundpsResultMap'"/>
+    <bind name="tableName" value="'refundps'"/>
+</sql>
+
+<insert id="insert" parameterType="cn.ruone.wxapp.shop.api.entity.StoreRefundps">
+    <include refid="config"/>
+    <include refid="BasicMapper.buildInsertSql"/>
+</insert>
+
+<delete id="deleteByPk" parameterType="String">
+    delete from refundps where id =#{id}
+</delete>
+
+<delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+    <include refid="config"/>
+    <include refid="BasicMapper.buildDeleteSql"/>
+</delete>
+
+<update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+    <include refid="config"/>
+    <include refid="BasicMapper.buildUpdateSql"/>
+</update>
+
+<select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="StoreRefundpsResultMap">
+    <include refid="config"/>
+    <include refid="BasicMapper.buildSelectSql"/>
+</select>
+
+<select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+    <include refid="config"/>
+    <include refid="BasicMapper.buildTotalSql"/>
+</select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ruone.wxapp.shop.dao.StoreTakeoutodrstatDao">
+    <resultMap id="StoreTakeoutodrstatResultMap" type="cn.ruone.wxapp.shop.api.entity.StoreTakeoutodrstat">
+        <result property="id" column="id" javaType="String" jdbcType="INTEGER"/>
+        <result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="bizid" column="bizid" javaType="String" jdbcType="INTEGER"/>
+        <result property="odrnum" column="odrnum" javaType="String" jdbcType="INTEGER"/>
+        <result property="income" column="income" javaType="float" jdbcType="DECIMAL"/>
+        <result property="wxpaysum" column="wxpaysum" javaType="float" jdbcType="DECIMAL"/>
+        <result property="recvpay" column="recvpay" javaType="float" jdbcType="DECIMAL"/>
+        <result property="onsitepay" column="onsitepay" javaType="float" jdbcType="DECIMAL"/>
+        <result property="walletpay" column="walletpay" javaType="float" jdbcType="DECIMAL"/>
+        <result property="date" column="date" javaType="String" jdbcType="DATE"/>
+    </resultMap>
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'StoreTakeoutodrstatResultMap'"/>
+        <bind name="tableName" value="'takeoutodrstat'"/>
+    </sql>
+
+    <insert id="insert" parameterType="cn.ruone.wxapp.shop.api.entity.StoreTakeoutodrstat">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="deleteByPk" parameterType="String">
+        delete from takeoutodrstat where id =#{id}
+    </delete>
+
+    <delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="StoreTakeoutodrstatResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>
